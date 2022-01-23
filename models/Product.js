@@ -33,7 +33,7 @@ Product.init(
     },
     category_id: {
       type: DataTypes.INTEGER,
-      //Need to ref Category Models id
+      //Need to ref Category Models id probably the foreign key
     }
   },
   {
