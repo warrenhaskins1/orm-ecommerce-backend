@@ -32,8 +32,9 @@ Product.init(
       defaultValue: 10,
     },
     category_id: {
+      //fk to Categories
       type: DataTypes.INTEGER,
-      //Need to ref Category Models id probably the foreign key
+      
     }
   },
   {
