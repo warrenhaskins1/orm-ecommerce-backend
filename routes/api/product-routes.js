@@ -10,7 +10,7 @@ const { Product, Category, Tag, ProductTag } = require("../../models");
 router.get("/", async (req, res) => {
   try {
     const productData = await Product.findAll({
-      attributes: ["id", "product_name", "price", "stock"],
+      // attributes: ["id", "product_name", "price", "stock"],
       // be sure to include its associated Category and Tag data
       include: [
         { model: Category, through: Product, as: "category_name" },
@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
 // find a single product by its `id`
 router.get("/:id", async (req, res) => {
   try {
-    const locationData = await Location.findByPk(req.params.id, {
+    const locationData = await Location.findOne(req.params.id, {
       include: [
         { model: Category, through: Product, as: "category_name" },
         { model: Tag, through: Product, as: "tag_name" },
@@ -96,7 +96,7 @@ Product.create(req.body)
   });
 
 // update product
-router.put("products/:id", (req, res) => {
+router.put("/:id", (req, res) => {
   // update product data
   Product.update(req.body, {
     where: {
