@@ -23,11 +23,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-
 // find a single product by its `id`
 router.get("/:id", async (req, res) => {
   try {
-    const locationData = await Location.findOne(req.params.id, {
+    const locationData = await Location.findByPk(req.params.id, {
       include: [
         { model: Category, through: Product, as: "category_name" },
         { model: Tag, through: Product, as: "tag_name" },
@@ -45,8 +44,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
-
 // create new product
 
 /* req.body should look like this...
@@ -59,7 +56,7 @@ router.get("/:id", async (req, res) => {
   */
 
 ///////////////////////////////////////////////////////////////////////////
-//POST ROUTES
+//POST ROUTE
 
 router.post("/", async (req, res) => {
   const productData = await Product.create({
@@ -72,7 +69,6 @@ router.post("/", async (req, res) => {
 
   return res.json(productData);
 });
-
 
 Product.create(req.body)
   .then((product) => {
@@ -95,6 +91,8 @@ Product.create(req.body)
     res.status(400).json(err);
   });
 
+/////////////////////////////////////////////////////////
+//PUT (UPDATE) ROUTE
 // update product
 router.put("/:id", (req, res) => {
   // update product data
@@ -136,7 +134,6 @@ router.put("/:id", (req, res) => {
       res.status(400).json(err);
     });
 });
-
 
 //////////////////////////////////////////////////////////////////////
 //DELETE ROUTE
