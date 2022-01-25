@@ -15,7 +15,7 @@ ProductTag.init(
       primaryKey: true,
     },
     product_id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       //Need to Ref Products model id
       references: {
         model: "product",
