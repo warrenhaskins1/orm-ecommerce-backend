@@ -13,7 +13,7 @@
 
 ## Installation
 
-- Clone the repo @ https://github.com/warrenhaskins1/12-sql-employee-tracker
+- Clone the repo @ https://github.com/warrenhaskins1/orm-ecommerce-backend
 - In the terminal run `npm i`
 - Install the following dependencies:
 - Sequelize `npm i sequelize`
