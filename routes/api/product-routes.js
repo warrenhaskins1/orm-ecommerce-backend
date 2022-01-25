@@ -22,12 +22,15 @@ router.get("/", (req, res) => {
       },
     ],
   })
-    .then((dbProductData) => res.json(dbProductData))
+    .then((productData) => res.json(productData))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
+
+////////////////////////////////////////////////////////////
+//GET BY ID
 // get one product
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
@@ -47,12 +50,12 @@ router.get('/:id', (req, res) => {
       }
     ]
   })
-    .then(dbCategoryData => {
-      if (!dbCategoryData) {
+    .then(productData => {
+      if (!productData) {
         res.status(404).json({ message: 'No product found with this particular id'}); 
         return; 
       }
-      res.json(dbCategoryData);
+      res.json(productData);
     })
     .catch(err => {
       console.log(err);
@@ -60,21 +63,8 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// create new product
-
-/* req.body should look like this...
-    {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
-    }
-  */
-
 ///////////////////////////////////////////////////////////////////////////
 //POST ROUTE
-
-
 // create new product
 router.post('/', (req, res) => {
   /* req.body should look like this...
@@ -159,7 +149,7 @@ router.put("/:id", (req, res) => {
 
 //////////////////////////////////////////////////////////////////////
 //DELETE ROUTE
-
+// delete a category by its `id` value
 router.delete("/:id", async (req, res) => {
   try {
     const productData = await Product.destroy({
